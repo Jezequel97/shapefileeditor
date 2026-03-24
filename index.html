@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shapefile Editor</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+</head>
+
+<body>
+
+<h1>Shapefile Editor 🚀</h1>
+
+<input type="file" id="fileInput">
+<button onclick="upload()">Upload</button>
+
+<br><br>
+
+<div class="container">
+    <div>
+        <h3>Active Columns</h3>
+        <div id="active" class="box"></div>
+    </div>
+
+    <div>
+        <h3>Hidden Columns</h3>
+        <div id="hidden" class="box"></div>
+    </div>
+</div>
+
+<br>
+
+<button onclick="applyChanges()">Apply Changes</button>
+<button onclick="download()">Download</button>
+
+<!-- 🔥 ADD COLUMN GROUP -->
+<div class="add-group">
+
+    <h3>Add Column</h3>
+
+    <div class="add-bar">
+        <input id="newName" placeholder="Column name">
+
+        <select id="newType">
+            <option value="string">string</option>
+            <option value="int">int</option>
+            <option value="float">float</option>
+            <option value="bool">bool</option>
+        </select>
+
+        <button onclick="addColumn()">➕ Add Column</button>
+    </div>
+
+</div>
+
+<script src="/static/app.js?v=6"></script>
+
+</body>
+</html>
