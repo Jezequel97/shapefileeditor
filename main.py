@@ -1,5 +1,5 @@
-from fastapi import FastAPI, UploadFile, File
-from fastapi.responses import FileResponse, HTMLResponse
+from fastapi import FastAPI, UploadFile, File, Request
+from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 
 import geopandas as gpd
@@ -254,3 +254,13 @@ def download():
 def serve_frontend():
     with open("index.html", "r", encoding="utf-8") as f:
         return f.read()
+
+# Redireects
+@app.middleware("http")
+async def redirect_domains(request: Request, call_next):
+    host = request.headers.get("host")
+
+    if host in ["shapefileeditor.net", "shapefileeditor.io"]:
+        return RedirectResponse(url=f"https://shapefileeditor.com{request.url.path}")
+
+    return await call_next(request)
