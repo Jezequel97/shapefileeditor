@@ -256,7 +256,7 @@ def serve_frontend():
         return f.read()
 
 # Redireects
-@app.middleware("https")
+@app.middleware("http")
 async def redirect_domains(request: Request, call_next):
     host = request.headers.get("host", "")
 
