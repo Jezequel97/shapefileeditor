@@ -205,8 +205,7 @@ def download():
         print("STEP 2: geometry OK")
 
         # 🔹 unieke tijdelijke map (voorkomt file lock issues)
-        folder = f"temp_{uuid.uuid4().hex}"
-        os.makedirs(folder, exist_ok=True)
+        folder = tempfile.mkdtemp()
 
         filename = LAST_FILENAME or "result"
         shp_path = os.path.join(folder, f"{filename}.shp")
@@ -231,6 +230,12 @@ def download():
                     )
 
         print("STEP 5: zip created")
+        print("DOWNLOAD CALLED")
+        print("FILENAME:", LAST_FILENAME)
+        print("DF EMPTY:", LAST_DF is None)
+        print("FILES IN FOLDER:", os.listdir(folder))
+        print("ZIP PATH:", zip_path)
+        print("EXISTS:", os.path.exists(zip_path))
 
         return FileResponse(
             path=zip_path,
