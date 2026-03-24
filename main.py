@@ -258,12 +258,14 @@ def serve_frontend():
 # Redireects
 @app.middleware("http")
 async def redirect_domains(request: Request, call_next):
-    host = request.headers.get("host", "")
+    host = request.headers.get("host", "").lower()
 
-    if (
-        "shapefileeditor.net" in host or
-        "shapefileeditor.io" in host
-    ):
+    print("HOST:", host)  # debug
+
+    if any(domain in host for domain in [
+        "shapefileeditor.net",
+        "shapefileeditor.io"
+    ]):
         return RedirectResponse(
             url=f"https://shapefileeditor.com{request.url.path}",
             status_code=301
