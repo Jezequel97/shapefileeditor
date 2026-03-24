@@ -44,6 +44,11 @@ function createItem(col) {
     const div = document.createElement("div")
     div.className = "item"
 
+    // 🔥 highlight nieuwe kolommen
+    if (!originalColumns.includes(col)) {
+        div.classList.add("new-column")
+    }
+
     const input = document.createElement("input")
     input.value = col
     input.dataset.original = col
@@ -63,6 +68,9 @@ function createItem(col) {
 function render() {
     const active = document.getElementById("active")
     const hidden = document.getElementById("hidden")
+	
+	if (window.activeSortable) window.activeSortable.destroy()
+	if (window.hiddenSortable) window.hiddenSortable.destroy()
 
     active.innerHTML = ""
     hidden.innerHTML = ""
@@ -71,7 +79,7 @@ function render() {
     hiddenColumns.forEach(col => hidden.appendChild(createItem(col)))
 
     // 🔥 drag overal behalve input
-    new Sortable(active, {
+    window.activeSortable = new Sortable(active, {
         group: "columns",
         animation: 150,
         filter: "input",
@@ -79,7 +87,7 @@ function render() {
         onEnd: updateState
     })
 
-    new Sortable(hidden, {
+    window.hiddenSortable = new Sortable(hidden, {
         group: "columns",
         animation: 150,
         filter: "input",
@@ -122,7 +130,7 @@ function addColumn() {
         return
     }
 
-    activeColumns.push(name)
+    activeColumns.unshift(name)
     types[name] = type || "string"
 
     // 🔥 reset input

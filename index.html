@@ -20,12 +20,30 @@
 
 <div class="container">
     <div>
-        <h3>Active Columns</h3>
+        <div class="column-header">
+            <h3>Active Columns</h3>
+            <small class = "hint">
+				Drag to reorder columns and click a name to rename it.
+			</small>
+			<small class="hint">
+                Below columns will be included in the exported shapefile
+            </small>
+        </div>
+
         <div id="active" class="box"></div>
     </div>
 
     <div>
-        <h3>Hidden Columns</h3>
+        <div class="column-header">
+            <h3>Hidden Columns</h3>
+            <small class="hint">
+                Drag columns here to hide them
+            </small>
+            <small class="hint warning">
+                Columns in this list will be permanently removed when you click "Apply Changes" ⚠️
+            </small>
+        </div>
+
         <div id="hidden" class="box"></div>
     </div>
 </div>
@@ -39,6 +57,10 @@
 <div class="add-group">
 
     <h3>Add Column</h3>
+
+    <small class="hint">
+        New columns are added at the top
+    </small>
 
     <div class="add-bar">
         <input id="newName" placeholder="Column name">

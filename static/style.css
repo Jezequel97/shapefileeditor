@@ -8,11 +8,24 @@ body {
     gap: 20px;
 }
 
+.container > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.column-header {
+    height: 100px; /* 🔥 iets groter maken */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
 .box {
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 10px;
     width: 300px;
+	flex-grow: 1;
 
     /* 🔥 NIEUW */
     height: 400px;
@@ -26,6 +39,17 @@ body {
 .box::-webkit-scrollbar-thumb {
     background: #aaa;
     border-radius: 3px;
+}
+
+.hint {
+    display: block;
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.hint.warning {
+    color: #a94442;
 }
 
 .item {
@@ -60,6 +84,10 @@ body {
     max-width: 500px;
 }
 
+.add-group h3 {
+	margin: 0;
+}
+
 .add-bar {
     display: flex;
     gap: 10px;
@@ -69,4 +97,9 @@ body {
 .add-bar input,
 .add-bar select {
     padding: 6px;
+}
+
+.new-column {
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
 }
