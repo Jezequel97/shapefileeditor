@@ -22,34 +22,56 @@
 
 <br><br>
 
-<div class="container">
-    <div>
-        <div class="column-header">
-            <h3>Active Columns</h3>
-            <small class = "hint">
-				Drag to reorder columns and click a name to rename it.
-			</small>
-			<small class="hint">
-                Below columns will be included in the exported shapefile
-            </small>
+<div class="main-layout">
+
+    <div class="left-panel">
+
+        <div class="container">
+               <!-- ACTIVE -->
+            <div>
+                <div class="column-header">
+                    <h3>Active Columns</h3>
+                    <small class="hint">
+                        Drag to reorder columns and click a name to rename it.
+                    </small>
+                </div>
+
+                <div id="active" class="box"></div>
+            </div>
+
+            <!-- HIDDEN -->
+            <div>
+                <div class="column-header">
+                    <h3>Hidden Columns</h3>
+                    <small class="hint">
+                        Drag columns here to hide them.<br>
+                        <span class="hint warning">
+                            Columns in this list will be permanently removed when you click "Apply Changes".
+                        </span>
+                    </small>
+                </div>
+
+                <div id="hidden" class="box"></div>
+            </div>
+
         </div>
 
-        <div id="active" class="box"></div>
     </div>
 
-    <div>
+    <!-- 🔹 RIGHT -->
+    <div class="right-panel">
+
         <div class="column-header">
-            <h3>Hidden Columns</h3>
-            <small class="hint">
-                Drag columns here to hide them
-            </small>
-            <small class="hint warning">
-                Columns in this list will be permanently removed when you click "Apply Changes" ⚠️
-            </small>
+            <h3>Preview</h3>
         </div>
 
-        <div id="hidden" class="box"></div>
+        <div id="previewTable">
+            <div id="previewPlaceholder">📂 Upload a shapefile to see a preview</div>
+            <table></table>
+        </div>
+
     </div>
+
 </div>
 
 <br>

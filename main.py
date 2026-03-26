@@ -159,6 +159,14 @@ async def edit(data: dict):
 
     # return columns (zonder geometry)
     columns = [col for col in df.columns if col != geometry_col]
+    
+    # preview opnieuw genereren (first 5 rows)
+    preview = []
+    for _, row in df.head(5).iterrows():
+        clean_row = {}
+        for col in columns:
+            clean_row[col] = clean_nan(row[col])
+        preview.append(clean_row)
 
     # types opnieuw bepalen
     types = {}
@@ -172,10 +180,12 @@ async def edit(data: dict):
             types[col] = "bool"
         else:
             types[col] = "string"
+            
 
     return {
         "columns": columns,
-        "types": types
+        "types": types,
+        "preview": preview
     }
 
 

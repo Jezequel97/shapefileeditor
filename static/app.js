@@ -35,7 +35,9 @@ async function upload() {
     hiddenColumns = []
     types = data.types
 
+	clearPreview()
     render()
+	renderPreview(data.preview, data.columns)
 }
 
 
@@ -96,6 +98,73 @@ function render() {
     })
 }
 
+function renderPreview(preview, columns) {
+
+    
+	const container = document.getElementById("previewTable")
+    const table = container.querySelector("table")
+	const placeholder = document.getElementById("previewPlaceholder")
+	
+	// 🔥 Preview
+    if (!preview || preview.length === 0) {
+        table.innerHTML = ""
+        if (placeholder) placeholder.style.display = "block"
+        return
+    }
+	
+	// 🔥 verberg placeholder
+    if (placeholder) {
+        placeholder.style.display = "none"
+    }
+
+    // 🔥 reset (ESSENTIEEL)
+    table.innerHTML = ""
+
+    // 🔹 header
+    const header = document.createElement("tr")
+
+    columns.forEach(col => {
+        const th = document.createElement("th")
+        th.innerText = col
+        header.appendChild(th)
+    })
+
+    table.appendChild(header)
+
+    // 🔹 rows
+    preview.forEach(row => {
+        const tr = document.createElement("tr")
+
+        columns.forEach(col => {
+            const td = document.createElement("td")
+            td.innerText = formatCell(row[col])
+            tr.appendChild(td)
+        })
+
+        table.appendChild(tr)
+    })
+}
+
+function formatCell(value) {
+    if (value === null || value === undefined) return ""
+
+    const str = String(value)
+
+    if (str.length > 20) {
+        return str.substring(0, 20) + "..."
+    }
+
+    return str
+}
+
+function clearPreview() {
+    const container = document.getElementById("previewTable")
+    const table = container.querySelector("table")
+    const placeholder = document.getElementById("previewPlaceholder")
+
+    table.innerHTML = ""
+    placeholder.style.display = "block"
+}
 
 // 🔄 Sync state na drag
 function updateState() {
@@ -138,7 +207,6 @@ function addColumn() {
 
     render()
 }
-
 
 // 🚀 Apply changes naar backend
 async function applyChanges() {
@@ -205,6 +273,7 @@ async function applyChanges() {
     })
 
     const data = await res.json()
+	renderPreview(data.preview, data.columns)
 
     if (data.error) {
         alert(data.error)
@@ -218,7 +287,6 @@ async function applyChanges() {
 
     render()
 }
-
 
 // 📥 Download shapefile
 function download() {
