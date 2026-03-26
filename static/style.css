@@ -3,6 +3,12 @@ body {
     padding: 20px;
 }
 
+.seo-text {
+    max-width: 600px;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
 .container {
     display: flex;
     gap: 20px;
