@@ -185,9 +185,11 @@ function updateState() {
 function addColumn() {
     const nameInput = document.getElementById("newName")
     const typeInput = document.getElementById("newType")
+	const defaultInput = document.getElementById("newDefault")
 
     const name = nameInput.value.trim()
     const type = typeInput.value
+	const defaultValue = defaultInput.value
 
     if (!name) {
         alert("Column name required")
@@ -201,9 +203,13 @@ function addColumn() {
 
     activeColumns.unshift(name)
     types[name] = type || "string"
+	
+	if (!window.defaults) window.defaults = {}
+	window.defaults[name] = defaultValue
 
     // 🔥 reset input
     nameInput.value = ""
+	defaultInput.value = ""
 
     render()
 }
@@ -251,7 +257,7 @@ async function applyChanges() {
         ) {
             add[col] = {
                 type: types[col] || "string",
-                default: ""
+                default: window.defaults?.[col] || ""
             }
         }
     })
