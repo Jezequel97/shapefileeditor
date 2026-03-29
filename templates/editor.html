@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shapefile Data Editor – Edit GIS Attribute Tables Online</title>
+
+	<meta name="description" content="Edit shapefile attribute tables online. Change values, update GIS data, and download the edited shapefile directly in your browser.">
+	<meta name="keywords" content="online shapefile editor, shapefile data editor, edit shapefile attributes online, GIS table editor, shapefile attribute table">
+
+    <link rel="stylesheet" href="/static/vendor/handsontable/handsontable.min.css">
+    <link rel="stylesheet" href="/static/vendor/handsontable/ht-theme-main.min.css">
+    <link rel="stylesheet" href="/static/css/editor.css">
+</head>
+<body>
+    <div class="topbar">
+        <div class="topbar-left">
+            <h1>Shapefile Editor 🚀</h1>
+            <div class="seo-text">
+                Edit shapefile attributes like you would in Excel. Upload a ZIP with your shapefile, edit values directly in the table, and download the updated result immediately.
+            </div>
+        </div>
+
+        <div class="topbar-right">
+            <div class="page-tabs">
+                <a href="/" class="page-tab">Reordering</a>
+                <a href="/editor" class="page-tab active">Editing data</a>
+                <div class="page-tab-filler"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toolbar">
+        <input type="file" id="fileInput" accept=".zip">
+        <button id="loadBtn">Upload</button>
+        <button id="saveBtn">Apply Changes</button>
+        <button id="downloadBtn">Download</button>
+    </div>
+
+    <div class="formula-bar">
+        <div id="cellRef">A1</div>
+        <input type="text" id="formulaInput" placeholder="Waarde of formule">
+    </div>
+
+    <div id="table"></div>
+
+    <script src="/static/vendor/handsontable/handsontable.full.min.js"></script>
+    <script src="/static/js/shape_editor.js"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shapefile Editor – Edit GIS Shapefiles Online</title>
+
+    <meta name="description" content="Edit shapefiles online: reorder, rename, and manage columns easily.">
+    <meta name="keywords" content="shapefile editor, GIS, shapefile tool, geo data editor">
+
+    <link rel="stylesheet" href="/static/css/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+</head>
+
+<body>
+
+    <div class="topbar">
+        <div class="topbar-left">
+            <h1>Shapefile Editor 🚀</h1>
+            <p class="seo-text">
+                Easily edit shapefile columns online. Reorder, rename, and manage GIS data directly in your browser. No installation required.
+            </p>
+        </div>
+
+        <div class="topbar-right">
+            <div class="page-tabs">
+                <a href="/" class="page-tab active">Reordering</a>
+                <a href="/editor" class="page-tab">Editing data</a>
+                <div class="page-tab-filler"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toolbar">
+        <input type="file" id="fileInput">
+        <button onclick="upload()">Upload</button>
+        <button onclick="applyChanges()">Apply Changes</button>
+        <button onclick="download()">Download</button>
+    </div>
+
+    <div class="main-layout">
+
+        <div class="left-panel">
+            <div class="container">
+
+                <div>
+                    <div class="column-header">
+                        <h3>Active Columns</h3>
+                        <small class="hint">
+                            Drag to reorder columns and click a name to rename it.
+                        </small>
+                    </div>
+
+                    <div id="active" class="box"></div>
+                </div>
+
+                <div>
+                    <div class="column-header">
+                        <h3>Hidden Columns</h3>
+                        <small class="hint">
+                            Drag columns here to hide them.<br>
+                            <span class="hint warning">
+                                Columns in this list will be permanently removed when you click "Apply Changes".
+                            </span>
+                        </small>
+                    </div>
+
+                    <div id="hidden" class="box"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="column-header">
+                <h3>Preview</h3>
+            </div>
+
+            <div id="previewTable">
+                <div id="previewPlaceholder">📂 Upload a shapefile to see a preview</div>
+                <table></table>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="add-group">
+        <h3>Add Column</h3>
+
+        <small class="hint">
+            New columns are added at the top
+        </small>
+
+        <div class="add-bar">
+            <input id="newName" placeholder="Column name">
+
+            <select id="newType">
+                <option value="string">string</option>
+                <option value="int">int</option>
+                <option value="float">float</option>
+                <option value="bool">bool</option>
+            </select>
+
+            <input id="newDefault" placeholder="Default value (optional)">
+
+            <button onclick="addColumn()">➕ Add Column</button>
+        </div>
+    </div>
+
+    <script src="/static/js/reordering_columns.js?v=6"></script>
+
+</body>
+</html>
